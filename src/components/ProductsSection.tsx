@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components/ProductCard";
-import goldBar from "@/assets/gold-bar.jpg";
+import goldBar from "@/assets/gold-bar-new.png";
 import {
   Carousel,
   CarouselContent,
