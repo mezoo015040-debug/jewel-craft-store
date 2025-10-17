@@ -4,6 +4,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { Button } from "@/components/ui/button";
 import { Heart, Share2, Minus, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
@@ -239,6 +240,9 @@ const ProductDetails = () => {
                 </div>
               </div>
             </div>
+
+            {/* Testimonials Section */}
+            <TestimonialsSection />
           </main>
           <Footer />
         </div>
