@@ -1,23 +1,13 @@
 import megaphone from "@/assets/megaphone.png";
 import clouds from "@/assets/clouds.png";
-
 export const HeroSection = () => {
-  return (
-    <section className="relative overflow-hidden bg-[#0a0e3d]">
+  return <section className="relative overflow-hidden bg-[#0a0e3d]">
       <div className="relative min-h-[500px] flex items-center justify-center py-12">
         {/* White clouds - top left */}
-        <img
-          src={clouds}
-          alt=""
-          className="absolute top-8 left-8 w-48 opacity-90"
-        />
+        <img src={clouds} alt="" className="absolute top-8 left-8 w-48 opacity-90" />
         
         {/* White clouds - bottom right */}
-        <img
-          src={clouds}
-          alt=""
-          className="absolute bottom-16 right-8 w-56 opacity-90"
-        />
+        <img src={clouds} alt="" className="absolute bottom-16 right-8 w-56 opacity-90" />
 
         {/* Golden stars decorations */}
         <div className="absolute top-12 left-1/4 text-yellow-400 text-2xl">★</div>
@@ -32,21 +22,12 @@ export const HeroSection = () => {
             <div className="flex flex-col items-center text-center">
               <div className="mb-4">
                 <div className="text-yellow-400 text-3xl mb-2">★</div>
-                <svg
-                  viewBox="0 0 120 120"
-                  className="h-28 w-28 mx-auto"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                <svg viewBox="0 0 120 120" className="h-28 w-28 mx-auto" xmlns="http://www.w3.org/2000/svg">
                   {/* Laurel wreath circle */}
                   <circle cx="60" cy="60" r="50" fill="none" stroke="#D4AF37" strokeWidth="2" strokeDasharray="3,3" />
                   
                   {/* Diamond */}
-                  <path
-                    d="M60 30 L45 50 L60 70 L75 50 Z"
-                    fill="#D4AF37"
-                    stroke="#B8960D"
-                    strokeWidth="2"
-                  />
+                  <path d="M60 30 L45 50 L60 70 L75 50 Z" fill="#D4AF37" stroke="#B8960D" strokeWidth="2" />
                   <path d="M52 50 L60 42 L68 50 L60 58 Z" fill="#FFF" opacity="0.4" />
                   
                   {/* Laurel leaves - left side */}
@@ -78,9 +59,13 @@ export const HeroSection = () => {
               {/* Payment logos */}
               <div className="flex flex-col items-center gap-3 mt-6">
                 <div className="bg-white px-8 py-3 rounded-lg shadow-lg">
-                  <span className="text-2xl font-bold" style={{ color: '#3EBDB5' }}>tamara</span>
+                  <span className="text-2xl font-bold" style={{
+                  color: '#3EBDB5'
+                }}>tamara</span>
                 </div>
-                <div className="px-8 py-3 rounded-lg shadow-lg" style={{ backgroundColor: '#3EBDB5' }}>
+                <div className="px-8 py-3 rounded-lg shadow-lg" style={{
+                backgroundColor: '#3EBDB5'
+              }}>
                   <span className="text-2xl font-bold text-white">tabby</span>
                 </div>
               </div>
@@ -88,11 +73,7 @@ export const HeroSection = () => {
 
             {/* Right side - Megaphone illustration */}
             <div className="flex justify-center">
-              <img
-                src={megaphone}
-                alt=""
-                className="w-64 h-64 object-contain animate-float"
-              />
+              
             </div>
           </div>
         </div>
@@ -107,6 +88,5 @@ export const HeroSection = () => {
           ›
         </button>
       </div>
-    </section>
-  );
+    </section>;
 };
