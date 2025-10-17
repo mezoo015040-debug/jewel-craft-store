@@ -19,33 +19,7 @@ export const HeroSection = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             {/* Left side - Logo and text */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4">
-                <div className="text-yellow-400 text-3xl mb-2">★</div>
-                <svg viewBox="0 0 120 120" className="h-28 w-28 mx-auto" xmlns="http://www.w3.org/2000/svg">
-                  {/* Laurel wreath circle */}
-                  <circle cx="60" cy="60" r="50" fill="none" stroke="#D4AF37" strokeWidth="2" strokeDasharray="3,3" />
-                  
-                  {/* Diamond */}
-                  <path d="M60 30 L45 50 L60 70 L75 50 Z" fill="#D4AF37" stroke="#B8960D" strokeWidth="2" />
-                  <path d="M52 50 L60 42 L68 50 L60 58 Z" fill="#FFF" opacity="0.4" />
-                  
-                  {/* Laurel leaves - left side */}
-                  <path d="M35 45 Q30 50 30 55 Q30 50 35 48 Z" fill="#D4AF37" />
-                  <path d="M33 55 Q28 60 28 65 Q28 60 33 58 Z" fill="#D4AF37" />
-                  
-                  {/* Laurel leaves - right side */}
-                  <path d="M85 45 Q90 50 90 55 Q90 50 85 48 Z" fill="#D4AF37" />
-                  <path d="M87 55 Q92 60 92 65 Q92 60 87 58 Z" fill="#D4AF37" />
-                </svg>
-              </div>
-              <h2 className="text-xl font-bold text-primary mb-1">مؤسسة فهد</h2>
-              <p className="text-base text-primary">سمير للمجوهرات</p>
-              <div className="flex gap-1 mt-2">
-                <span className="text-yellow-400 text-lg">✦</span>
-                <span className="text-yellow-400 text-lg">✦</span>
-              </div>
-            </div>
+            
 
             {/* Center - Main message */}
             <div className="text-center space-y-6">
