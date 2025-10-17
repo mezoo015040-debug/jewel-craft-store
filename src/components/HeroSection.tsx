@@ -24,11 +24,8 @@ export const HeroSection = () => {
             {/* Center - Main message */}
             <div className="text-center space-y-6">
               <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                قسّم طلبك مع تابي أو تمارا
+                قسط سلفتك علي 7 دفعات مع تابي وتمارة
               </h1>
-              <p className="text-3xl md:text-4xl font-bold text-white">
-                على 4 أو 6 دفعات
-              </p>
 
               {/* Payment logos */}
               <div className="flex flex-col items-center gap-3 mt-6">
