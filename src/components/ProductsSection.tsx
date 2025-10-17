@@ -1,7 +1,12 @@
 import { ProductCard } from "@/components/ProductCard";
 import goldBar from "@/assets/gold-bar.jpg";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const products = [
   {
@@ -58,25 +63,30 @@ export const ProductsSection = () => {
   return (
     <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        {/* Header with navigation */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary">
-              <ChevronRight className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary">
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          </div>
-          
+        {/* Header */}
+        <div className="flex items-center justify-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900">سبائك ذهب</h2>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
+        {/* Products Carousel */}
+        <div className="max-w-7xl mx-auto">
+          <Carousel
+            opts={{
+              align: "start",
+              direction: "rtl",
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {products.map((product) => (
+                <CarouselItem key={product.id} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                  <ProductCard {...product} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="right-auto left-0" />
+            <CarouselNext className="left-auto right-0" />
+          </Carousel>
         </div>
       </div>
     </section>
