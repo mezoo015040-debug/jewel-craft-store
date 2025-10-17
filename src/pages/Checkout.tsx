@@ -6,16 +6,19 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useCart } from "@/contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Checkout() {
   const { items, totalPrice } = useCart();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [paymentMethod, setPaymentMethod] = useState<string>("");
+  const [expandedPayment, setExpandedPayment] = useState<string>("");
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -150,69 +153,146 @@ export default function Checkout() {
                 <Card className="p-6">
                   <h2 className="text-xl font-bold mb-4">طريقة الدفع</h2>
                   
-                  <div className="space-y-3">
-                    <div 
-                      className={`border rounded-lg p-4 cursor-pointer transition-all ${
-                        paymentMethod === 'tamara' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}
-                      onClick={() => setPaymentMethod('tamara')}
+                  <div className="space-y-4">
+                    {/* Tamara Payment */}
+                    <Collapsible 
+                      open={expandedPayment === 'tamara'}
+                      onOpenChange={(open) => {
+                        setExpandedPayment(open ? 'tamara' : '');
+                        if (open) setPaymentMethod('tamara');
+                      }}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                            paymentMethod === 'tamara' ? 'border-primary' : 'border-border'
-                          }`}>
-                            {paymentMethod === 'tamara' && (
-                              <div className="w-3 h-3 rounded-full bg-primary" />
-                            )}
+                      <div 
+                        className={`border-2 rounded-xl overflow-hidden transition-all ${
+                          paymentMethod === 'tamara' ? 'border-primary shadow-md' : 'border-border'
+                        }`}
+                      >
+                        <CollapsibleTrigger asChild>
+                          <div 
+                            className={`p-4 cursor-pointer transition-all ${
+                              paymentMethod === 'tamara' ? 'bg-primary/5' : 'hover:bg-muted/50'
+                            }`}
+                            onClick={() => setPaymentMethod('tamara')}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-4">
+                                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                                  paymentMethod === 'tamara' ? 'border-primary' : 'border-border'
+                                }`}>
+                                  {paymentMethod === 'tamara' && (
+                                    <div className="w-3.5 h-3.5 rounded-full bg-primary" />
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  {/* Placeholder for Tamara logo - will be replaced */}
+                                  <div className="w-24 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                                    تمارا
+                                  </div>
+                                  <div className="text-right">
+                                    <p className="font-semibold text-sm">قسّط على 6 أشهر</p>
+                                    <p className="text-xs text-muted-foreground">بدون فوائد أو رسوم إضافية</p>
+                                  </div>
+                                </div>
+                              </div>
+                              {expandedPayment === 'tamara' ? (
+                                <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                              ) : (
+                                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                              )}
+                            </div>
                           </div>
-                          <span className="font-medium">تمارا - قسّم فاتورتك على 4 دفعات بدون فوائد</span>
-                        </div>
-                        <div className="text-sm text-muted-foreground">Tamara</div>
+                        </CollapsibleTrigger>
+                        
+                        <CollapsibleContent>
+                          <div className="p-4 bg-muted/30 border-t">
+                            <h4 className="font-semibold mb-3 text-sm">خطة التقسيط - 6 أشهر</h4>
+                            <div className="space-y-2">
+                              {[1, 2, 3, 4, 5, 6].map((month) => (
+                                <div key={month} className="flex justify-between items-center py-2 px-3 bg-background rounded-lg">
+                                  <span className="text-sm text-muted-foreground">القسط {month}</span>
+                                  <span className="font-semibold text-primary">
+                                    {(totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-3 text-center">
+                              الدفعة الأولى عند الشراء، والباقي يُقسّم على 5 أشهر
+                            </p>
+                          </div>
+                        </CollapsibleContent>
                       </div>
-                    </div>
+                    </Collapsible>
 
-                    <div 
-                      className={`border rounded-lg p-4 cursor-pointer transition-all ${
-                        paymentMethod === 'tabby' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}
-                      onClick={() => setPaymentMethod('tabby')}
+                    {/* Tabby Payment */}
+                    <Collapsible 
+                      open={expandedPayment === 'tabby'}
+                      onOpenChange={(open) => {
+                        setExpandedPayment(open ? 'tabby' : '');
+                        if (open) setPaymentMethod('tabby');
+                      }}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                            paymentMethod === 'tabby' ? 'border-primary' : 'border-border'
-                          }`}>
-                            {paymentMethod === 'tabby' && (
-                              <div className="w-3 h-3 rounded-full bg-primary" />
-                            )}
+                      <div 
+                        className={`border-2 rounded-xl overflow-hidden transition-all ${
+                          paymentMethod === 'tabby' ? 'border-primary shadow-md' : 'border-border'
+                        }`}
+                      >
+                        <CollapsibleTrigger asChild>
+                          <div 
+                            className={`p-4 cursor-pointer transition-all ${
+                              paymentMethod === 'tabby' ? 'bg-primary/5' : 'hover:bg-muted/50'
+                            }`}
+                            onClick={() => setPaymentMethod('tabby')}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-4">
+                                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                                  paymentMethod === 'tabby' ? 'border-primary' : 'border-border'
+                                }`}>
+                                  {paymentMethod === 'tabby' && (
+                                    <div className="w-3.5 h-3.5 rounded-full bg-primary" />
+                                  )}
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  {/* Placeholder for Tabby logo - will be replaced */}
+                                  <div className="w-24 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                                    تابي
+                                  </div>
+                                  <div className="text-right">
+                                    <p className="font-semibold text-sm">قسّط على 6 أشهر</p>
+                                    <p className="text-xs text-muted-foreground">بدون فوائد أو رسوم إضافية</p>
+                                  </div>
+                                </div>
+                              </div>
+                              {expandedPayment === 'tabby' ? (
+                                <ChevronUp className="h-5 w-5 text-muted-foreground" />
+                              ) : (
+                                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                              )}
+                            </div>
                           </div>
-                          <span className="font-medium">تابي - قسّم مشترياتك على 4 دفعات</span>
-                        </div>
-                        <div className="text-sm text-muted-foreground">Tabby</div>
-                      </div>
-                    </div>
-
-                    <div 
-                      className={`border rounded-lg p-4 cursor-pointer transition-all ${
-                        paymentMethod === 'credit' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}
-                      onClick={() => setPaymentMethod('credit')}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                            paymentMethod === 'credit' ? 'border-primary' : 'border-border'
-                          }`}>
-                            {paymentMethod === 'credit' && (
-                              <div className="w-3 h-3 rounded-full bg-primary" />
-                            )}
+                        </CollapsibleTrigger>
+                        
+                        <CollapsibleContent>
+                          <div className="p-4 bg-muted/30 border-t">
+                            <h4 className="font-semibold mb-3 text-sm">خطة التقسيط - 6 أشهر</h4>
+                            <div className="space-y-2">
+                              {[1, 2, 3, 4, 5, 6].map((month) => (
+                                <div key={month} className="flex justify-between items-center py-2 px-3 bg-background rounded-lg">
+                                  <span className="text-sm text-muted-foreground">القسط {month}</span>
+                                  <span className="font-semibold text-primary">
+                                    {(totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                            <p className="text-xs text-muted-foreground mt-3 text-center">
+                              الدفعة الأولى عند الشراء، والباقي يُقسّم على 5 أشهر
+                            </p>
                           </div>
-                          <span className="font-medium">بطاقة الائتمان / مدى</span>
-                        </div>
-                        <div className="text-sm text-muted-foreground">💳</div>
+                        </CollapsibleContent>
                       </div>
-                    </div>
+                    </Collapsible>
                   </div>
                 </Card>
               </div>
