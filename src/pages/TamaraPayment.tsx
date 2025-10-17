@@ -187,13 +187,9 @@ export default function TamaraPayment() {
               </p>
             </div>
 
-            {/* Total Amount */}
-            
-
             {/* Installment Details */}
             <div className="space-y-3 mb-6">
               <p className="font-semibold text-gray-900 text-right mb-4">تفاصيل الأقساط:</p>
-              
               {[0, 1, 2, 3, 4, 5].map(index => {
             const installmentAmount = orderData.totalPrice / 6;
             const date = new Date();
