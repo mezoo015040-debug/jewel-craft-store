@@ -76,9 +76,22 @@ export default function Checkout() {
       className: "bg-green-600 text-white border-green-600",
     });
 
-    // Here you would typically process the payment
-    const orderDate = new Date();
-    console.log('Order data:', { formData, paymentMethod, items, totalPrice, orderDate });
+    // Navigate to payment page based on payment method
+    if (paymentMethod === 'tamara') {
+      navigate('/tamara-payment', { 
+        state: { 
+          orderData: { 
+            formData, 
+            items, 
+            totalPrice,
+            paymentMethod 
+          } 
+        } 
+      });
+    } else if (paymentMethod === 'tabby') {
+      // Similar navigation for Tabby
+      console.log('Tabby payment selected - implement similar flow');
+    }
   };
 
   const orderDate = new Date();
