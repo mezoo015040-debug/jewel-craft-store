@@ -82,27 +82,30 @@ export const Footer = () => {
           {/* Certifications */}
           <div className="space-y-4">
             <h4 className="font-bold text-gray-900">الشهادات والتوثيق</h4>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
+            <div className="space-y-6">
+              {/* VAT Certificate */}
+              <div className="flex items-start gap-4 p-3 bg-white rounded-lg border border-gray-200">
                 <img 
                   src={vatCertificate} 
                   alt="الرقم الضريبي" 
-                  className="h-20 w-auto object-contain"
+                  className="h-16 w-auto object-contain flex-shrink-0"
                 />
-                <div className="text-sm text-gray-600">
-                  <p className="font-semibold">الرقم الضريبي</p>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-800 text-sm">الرقم الضريبي</p>
+                  <p className="text-xs text-gray-500 mt-1">ضريبة القيمة المضافة</p>
                 </div>
               </div>
               
-              <div className="flex items-center gap-3">
+              {/* Business Center Certificate */}
+              <div className="flex items-start gap-4 p-3 bg-white rounded-lg border border-gray-200">
                 <img 
                   src={businessCenter} 
                   alt="توثيق مركز الأعمال" 
-                  className="h-16 w-auto object-contain"
+                  className="h-16 w-auto object-contain flex-shrink-0"
                 />
-                <div className="text-sm text-gray-600">
-                  <p className="font-semibold">توثيق مركز الأعمال</p>
-                  <p className="text-xs mt-1">1009208445</p>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-800 text-sm">توثيق مركز الأعمال</p>
+                  <p className="text-xs text-primary font-semibold mt-1 direction-ltr">1009208445</p>
                 </div>
               </div>
             </div>
