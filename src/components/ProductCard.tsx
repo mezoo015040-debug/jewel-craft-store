@@ -15,7 +15,7 @@ export const ProductCard = ({ name, category, price, rating, image }: ProductCar
   return (
     <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
       {/* Image Section with Dark Background */}
-      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-t-[2rem] p-4">
+      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-t-[2rem] p-6">
         {/* Red Badge */}
         <div className="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-md text-xs font-bold z-10">
           فخامة لا تُقاوم
@@ -26,8 +26,8 @@ export const ProductCard = ({ name, category, price, rating, image }: ProductCar
           <img src={logo} alt="Logo" className="w-full h-full object-contain" />
         </div>
 
-        {/* Product Image in Rounded Container */}
-        <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-gray-700 to-gray-800 p-6 mt-8">
+        {/* Product Image - Full size without inner container */}
+        <div className="aspect-square mt-8">
           <img
             src={image}
             alt={name}
