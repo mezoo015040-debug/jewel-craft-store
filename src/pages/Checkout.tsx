@@ -20,11 +20,8 @@ export default function Checkout() {
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
-    email: "",
-    city: "",
-    district: "",
-    street: "",
-    buildingNumber: "",
+    iban: "",
+    bankName: "",
   });
 
   // Redirect if cart is empty
@@ -53,7 +50,7 @@ export default function Checkout() {
     }
 
     // Validate form
-    const requiredFields = ['fullName', 'phone', 'city', 'district'];
+    const requiredFields = ['fullName', 'phone', 'iban', 'bankName'];
     const emptyFields = requiredFields.filter(field => !formData[field as keyof typeof formData]);
     
     if (emptyFields.length > 0) {
@@ -106,88 +103,44 @@ export default function Checkout() {
                       />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="phone">رقم الجوال *</Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          placeholder="05xxxxxxxx"
-                          required
-                          dir="rtl"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">البريد الإلكتروني (اختياري)</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="example@email.com"
-                          dir="ltr"
-                        />
-                      </div>
+                    <div>
+                      <Label htmlFor="phone">رقم الجوال *</Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        placeholder="05xxxxxxxx"
+                        required
+                        dir="rtl"
+                      />
                     </div>
 
-                    <Separator className="my-6" />
-                    
-                    <h3 className="text-lg font-semibold mb-3">عنوان الشحن</h3>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="city">المدينة *</Label>
-                        <Input
-                          id="city"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                          placeholder="أدخل المدينة"
-                          required
-                          dir="rtl"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="district">الحي *</Label>
-                        <Input
-                          id="district"
-                          name="district"
-                          value={formData.district}
-                          onChange={handleInputChange}
-                          placeholder="أدخل الحي"
-                          required
-                          dir="rtl"
-                        />
-                      </div>
+                    <div>
+                      <Label htmlFor="iban">رقم الآيبان *</Label>
+                      <Input
+                        id="iban"
+                        name="iban"
+                        value={formData.iban}
+                        onChange={handleInputChange}
+                        placeholder="SA0000000000000000000000"
+                        required
+                        dir="ltr"
+                      />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="street">الشارع (اختياري)</Label>
-                        <Input
-                          id="street"
-                          name="street"
-                          value={formData.street}
-                          onChange={handleInputChange}
-                          placeholder="أدخل اسم الشارع"
-                          dir="rtl"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="buildingNumber">رقم المبنى (اختياري)</Label>
-                        <Input
-                          id="buildingNumber"
-                          name="buildingNumber"
-                          value={formData.buildingNumber}
-                          onChange={handleInputChange}
-                          placeholder="رقم المبنى"
-                          dir="rtl"
-                        />
-                      </div>
+                    <div>
+                      <Label htmlFor="bankName">اسم البنك *</Label>
+                      <Input
+                        id="bankName"
+                        name="bankName"
+                        value={formData.bankName}
+                        onChange={handleInputChange}
+                        placeholder="أدخل اسم البنك"
+                        required
+                        dir="rtl"
+                      />
                     </div>
                   </div>
                 </Card>
