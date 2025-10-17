@@ -82,17 +82,29 @@ export const Footer = () => {
           {/* Certifications */}
           <div className="space-y-4">
             <h4 className="font-bold text-gray-900">الشهادات والتوثيق</h4>
-            <div className="flex gap-4 items-center">
-              <img 
-                src={vatCertificate} 
-                alt="الرقم الضريبي" 
-                className="h-20 w-auto object-contain"
-              />
-              <img 
-                src={businessCenter} 
-                alt="توثيق مركز الأعمال" 
-                className="h-16 w-auto object-contain"
-              />
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <img 
+                  src={vatCertificate} 
+                  alt="الرقم الضريبي" 
+                  className="h-20 w-auto object-contain"
+                />
+                <div className="text-sm text-gray-600">
+                  <p className="font-semibold">الرقم الضريبي</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <img 
+                  src={businessCenter} 
+                  alt="توثيق مركز الأعمال" 
+                  className="h-16 w-auto object-contain"
+                />
+                <div className="text-sm text-gray-600">
+                  <p className="font-semibold">توثيق مركز الأعمال</p>
+                  <p className="text-xs mt-1">1009208445</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
