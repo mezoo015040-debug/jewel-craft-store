@@ -13,7 +13,7 @@ export const HeroSection = () => {
         <div className="absolute top-12 left-1/4 text-yellow-400 text-2xl">★</div>
         <div className="absolute top-32 left-1/3 text-yellow-400 text-xl">✦</div>
         <div className="absolute top-20 right-1/4 text-yellow-400 text-3xl">✦</div>
-        <div className="absolute bottom-32 left-1/4 text-yellow-400 text-xl">✦</div>
+        
         <div className="absolute bottom-24 left-1/3 text-yellow-400 text-2xl">✦</div>
 
         <div className="container mx-auto px-4 relative z-10">
