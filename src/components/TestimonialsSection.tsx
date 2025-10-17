@@ -13,42 +13,48 @@ const testimonials = [
     name: "أحمد محمد",
     rating: 5,
     comment: "منتجات ممتازة وجودة عالية، التعامل كان احترافي جداً والتسليم سريع. أنصح الجميع بالشراء من هنا.",
-    date: "منذ أسبوع"
+    date: "منذ أسبوع",
+    gender: "male" as const
   },
   {
     id: 2,
     name: "فاطمة السعيد",
     rating: 5,
     comment: "سبائك الذهب بجودة ممتازة وأسعار منافسة. خدمة العملاء رائعة ومتعاونة. تجربة مميزة جداً.",
-    date: "منذ أسبوعين"
+    date: "منذ أسبوعين",
+    gender: "female" as const
   },
   {
     id: 3,
     name: "خالد عبدالله",
     rating: 5,
     comment: "أفضل مكان لشراء الذهب! المنتجات أصلية والأسعار ممتازة. التوصيل سريع والتغليف احترافي.",
-    date: "منذ ٣ أسابيع"
+    date: "منذ ٣ أسابيع",
+    gender: "male" as const
   },
   {
     id: 4,
     name: "نورة الحربي",
     rating: 4.5,
     comment: "تجربة رائعة، المنتجات عالية الجودة والخدمة ممتازة. سأكرر الشراء بالتأكيد.",
-    date: "منذ شهر"
+    date: "منذ شهر",
+    gender: "female" as const
   },
   {
     id: 5,
     name: "سعد المالكي",
     rating: 5,
     comment: "ثقة وأمان في التعامل. الذهب أصلي ومطابق للمواصفات. خدمة عملاء متميزة.",
-    date: "منذ شهر"
+    date: "منذ شهر",
+    gender: "male" as const
   },
   {
     id: 6,
     name: "منى القحطاني",
     rating: 5,
     comment: "أسعار منافسة جداً ومنتجات بجودة عالية. التوصيل كان سريع والتغليف ممتاز. شكراً لكم.",
-    date: "منذ شهرين"
+    date: "منذ شهرين",
+    gender: "female" as const
   }
 ];
 
@@ -77,6 +83,7 @@ export const TestimonialsSection = () => {
                   rating={testimonial.rating}
                   comment={testimonial.comment}
                   date={testimonial.date}
+                  gender={testimonial.gender}
                 />
               </CarouselItem>
             ))}

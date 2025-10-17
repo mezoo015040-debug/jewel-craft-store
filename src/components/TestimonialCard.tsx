@@ -1,4 +1,4 @@
-import { Star, Quote } from "lucide-react";
+import { Star, User, UserRound } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface TestimonialCardProps {
@@ -6,14 +6,19 @@ interface TestimonialCardProps {
   rating: number;
   comment: string;
   date: string;
+  gender: "male" | "female";
 }
 
-export const TestimonialCard = ({ name, rating, comment, date }: TestimonialCardProps) => {
+export const TestimonialCard = ({ name, rating, comment, date, gender }: TestimonialCardProps) => {
   return (
     <Card className="p-6 bg-card hover:shadow-xl transition-all duration-300 border-2 border-primary/20">
       <div className="flex items-start gap-4">
         <div className="bg-primary/10 p-3 rounded-full">
-          <Quote className="h-6 w-6 text-primary" />
+          {gender === "female" ? (
+            <User className="h-6 w-6 text-primary" />
+          ) : (
+            <UserRound className="h-6 w-6 text-primary" />
+          )}
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between mb-2">
