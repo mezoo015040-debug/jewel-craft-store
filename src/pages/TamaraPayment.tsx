@@ -16,7 +16,7 @@ export default function TamaraPayment() {
   
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [step, setStep] = useState<"phone" | "otp" | "payment">("phone");
+  const [step, setStep] = useState<"phone" | "otp" | "installment-plan" | "payment">("phone");
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [countdown, setCountdown] = useState(30);
   const otpInputs = useRef<(HTMLInputElement | null)[]>([]);
@@ -96,7 +96,7 @@ export default function TamaraPayment() {
     // Simulate OTP verification
     setTimeout(() => {
       setIsLoading(false);
-      setStep("payment");
+      setStep("installment-plan");
       toast({
         title: "تم التحقق بنجاح",
         description: "جاري معالجة طلبك",
@@ -198,7 +198,95 @@ export default function TamaraPayment() {
 
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-4 py-12">
-        {step === "payment" ? (
+        {step === "installment-plan" ? (
+          <Card className="w-full max-w-md p-8 shadow-lg">
+            <div className="text-center mb-8">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                خطة الدفع بالتقسيط
+              </h1>
+              <p className="text-gray-600 text-sm">
+                قسّط مشترياتك على 6 أشهر بدون فوائد
+              </p>
+            </div>
+
+            {/* Total Amount */}
+            <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6 mb-6">
+              <div className="text-center">
+                <p className="text-sm text-gray-600 mb-2">إجمالي المبلغ</p>
+                <p className="text-3xl font-bold text-gray-900">
+                  {orderData.totalPrice.toLocaleString("ar-SA")} ر.س
+                </p>
+              </div>
+            </div>
+
+            {/* Installment Details */}
+            <div className="space-y-3 mb-6">
+              <p className="font-semibold text-gray-900 text-right mb-4">تفاصيل الأقساط:</p>
+              
+              {[0, 1, 2, 3, 4, 5].map((index) => {
+                const installmentAmount = orderData.totalPrice / 6;
+                const date = new Date();
+                date.setMonth(date.getMonth() + index);
+                const monthName = date.toLocaleDateString('ar-SA', { month: 'long', year: 'numeric' });
+                
+                return (
+                  <div 
+                    key={index}
+                    className={`flex items-center justify-between p-4 rounded-lg border-2 ${
+                      index === 0 
+                        ? 'bg-green-50 border-green-500' 
+                        : 'bg-gray-50 border-gray-200'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
+                        index === 0 
+                          ? 'bg-green-500 text-white' 
+                          : 'bg-gray-300 text-gray-600'
+                      }`}>
+                        {index + 1}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">
+                          {installmentAmount.toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
+                        </p>
+                        <p className="text-xs text-gray-600">{monthName}</p>
+                      </div>
+                    </div>
+                    {index === 0 && (
+                      <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        ادفع الآن
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* First Payment Highlight */}
+            <div className="bg-gray-900 text-white p-6 rounded-lg mb-6">
+              <div className="flex justify-between items-center">
+                <span className="text-sm">القسط الأول (الآن)</span>
+                <span className="text-2xl font-bold">
+                  {(orderData.totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
+                </span>
+              </div>
+            </div>
+
+            {/* Continue Button */}
+            <Button 
+              onClick={() => setStep("payment")}
+              className="w-full bg-black hover:bg-gray-800 text-white py-6 text-base font-medium rounded-lg"
+            >
+              متابعة إلى الدفع
+            </Button>
+
+            {/* Info */}
+            <p className="text-center text-xs text-gray-500 mt-4">
+              بدون فوائد • بدون رسوم إضافية • دفع آمن ومحمي
+            </p>
+          </Card>
+        ) : step === "payment" ? (
           <Card className="w-full max-w-md p-8 shadow-lg">
             <div className="text-center mb-8">
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
