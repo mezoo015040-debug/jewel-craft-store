@@ -1,86 +1,111 @@
-import heroBanner from "@/assets/hero-banner.jpg";
+import megaphone from "@/assets/megaphone.png";
+import clouds from "@/assets/clouds.png";
 
 export const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        className="relative h-[400px] md:h-[500px] bg-gradient-hero flex items-center justify-center"
-        style={{
-          backgroundImage: `url(${heroBanner})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/70 to-secondary/90"></div>
+    <section className="relative overflow-hidden bg-[#0a0e3d]">
+      <div className="relative min-h-[500px] flex items-center justify-center py-12">
+        {/* White clouds - top left */}
+        <img
+          src={clouds}
+          alt=""
+          className="absolute top-8 left-8 w-48 opacity-90"
+        />
+        
+        {/* White clouds - bottom right */}
+        <img
+          src={clouds}
+          alt=""
+          className="absolute bottom-16 right-8 w-56 opacity-90"
+        />
 
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="inline-block animate-float">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="h-1 w-12 bg-gradient-gold rounded"></div>
+        {/* Golden stars decorations */}
+        <div className="absolute top-12 left-1/4 text-yellow-400 text-2xl">★</div>
+        <div className="absolute top-32 left-1/3 text-yellow-400 text-xl">✦</div>
+        <div className="absolute top-20 right-1/4 text-yellow-400 text-3xl">✦</div>
+        <div className="absolute bottom-32 left-1/4 text-yellow-400 text-xl">✦</div>
+        <div className="absolute bottom-24 left-1/3 text-yellow-400 text-2xl">✦</div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            {/* Left side - Logo and text */}
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4">
+                <div className="text-yellow-400 text-3xl mb-2">★</div>
                 <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-10 w-10 text-primary"
+                  viewBox="0 0 120 120"
+                  className="h-28 w-28 mx-auto"
                   xmlns="http://www.w3.org/2000/svg"
                 >
+                  {/* Laurel wreath circle */}
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="#D4AF37" strokeWidth="2" strokeDasharray="3,3" />
+                  
+                  {/* Diamond */}
                   <path
-                    d="M12 2L2 7L12 12L22 7L12 2Z"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
+                    d="M60 30 L45 50 L60 70 L75 50 Z"
+                    fill="#D4AF37"
+                    stroke="#B8960D"
+                    strokeWidth="2"
                   />
-                  <path
-                    d="M2 17L12 22L22 17"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M2 12L12 17L22 12"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M52 50 L60 42 L68 50 L60 58 Z" fill="#FFF" opacity="0.4" />
+                  
+                  {/* Laurel leaves - left side */}
+                  <path d="M35 45 Q30 50 30 55 Q30 50 35 48 Z" fill="#D4AF37" />
+                  <path d="M33 55 Q28 60 28 65 Q28 60 33 58 Z" fill="#D4AF37" />
+                  
+                  {/* Laurel leaves - right side */}
+                  <path d="M85 45 Q90 50 90 55 Q90 50 85 48 Z" fill="#D4AF37" />
+                  <path d="M87 55 Q92 60 92 65 Q92 60 87 58 Z" fill="#D4AF37" />
                 </svg>
-                <div className="h-1 w-12 bg-gradient-gold rounded"></div>
+              </div>
+              <h2 className="text-xl font-bold text-primary mb-1">مؤسسة فهد</h2>
+              <p className="text-base text-primary">سمير للمجوهرات</p>
+              <div className="flex gap-1 mt-2">
+                <span className="text-yellow-400 text-lg">✦</span>
+                <span className="text-yellow-400 text-lg">✦</span>
               </div>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold text-secondary-foreground mb-4">
-              قسّم طلبك مع{" "}
-              <span className="bg-gradient-gold bg-clip-text text-transparent">
-                تابي أو تمارا
-              </span>
-            </h2>
+            {/* Center - Main message */}
+            <div className="text-center space-y-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                قسّم طلبك مع تابي أو تمارا
+              </h1>
+              <p className="text-3xl md:text-4xl font-bold text-white">
+                على 4 أو 6 دفعات
+              </p>
 
-            <p className="text-xl md:text-2xl text-secondary-foreground/90 mb-6">
-              على 4 أو 6 دفعات بدون فوائد
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <div className="bg-white px-6 py-3 rounded-lg shadow-elegant">
-                <span className="text-2xl font-bold text-secondary">tamara</span>
-              </div>
-              <div className="bg-primary px-6 py-3 rounded-lg shadow-elegant">
-                <span className="text-2xl font-bold text-secondary">tabby</span>
+              {/* Payment logos */}
+              <div className="flex flex-col items-center gap-3 mt-6">
+                <div className="bg-white px-8 py-3 rounded-lg shadow-lg">
+                  <span className="text-2xl font-bold" style={{ color: '#3EBDB5' }}>tamara</span>
+                </div>
+                <div className="px-8 py-3 rounded-lg shadow-lg" style={{ backgroundColor: '#3EBDB5' }}>
+                  <span className="text-2xl font-bold text-white">tabby</span>
+                </div>
               </div>
             </div>
 
-            <p className="text-sm text-secondary-foreground/70 mt-4">
-              فخامة لا تُقاوم - استثمر في الذهب الخالص
-            </p>
+            {/* Right side - Megaphone illustration */}
+            <div className="flex justify-center">
+              <img
+                src={megaphone}
+                alt=""
+                className="w-64 h-64 object-contain animate-float"
+              />
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl animate-pulse delay-75"></div>
+      {/* Navigation arrows */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4">
+        <button className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors">
+          ‹
+        </button>
+        <button className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors">
+          ›
+        </button>
       </div>
     </section>
   );

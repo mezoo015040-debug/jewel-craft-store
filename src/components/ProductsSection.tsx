@@ -1,5 +1,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import goldBar from "@/assets/gold-bar.jpg";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const products = [
   {
@@ -54,22 +56,24 @@ const products = [
 
 export const ProductsSection = () => {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-1 w-12 bg-gradient-gold rounded"></div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              سبائك الذهب
-            </h2>
-            <div className="h-1 w-12 bg-gradient-gold rounded"></div>
+        {/* Header with navigation */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary">
+              <ChevronRight className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary">
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
           </div>
-          <p className="text-muted-foreground text-lg">
-            استثمر في أفضل سبائك الذهب الخالص عيار 24
-          </p>
+          
+          <h2 className="text-2xl font-bold text-gray-900">سبائك ذهب</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {products.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}

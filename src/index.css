@@ -9,52 +9,46 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 235 45% 15%;
+    --foreground: 0 0% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 235 45% 15%;
+    --card-foreground: 0 0% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 235 45% 15%;
+    --popover-foreground: 0 0% 20%;
 
-    /* Luxury Gold - Primary color */
+    /* Luxury Gold */
     --primary: 43 96% 56%;
-    --primary-foreground: 235 45% 15%;
+    --primary-foreground: 0 0% 100%;
     --primary-glow: 45 100% 65%;
 
-    /* Royal Navy Blue - Secondary */
-    --secondary: 235 60% 25%;
-    --secondary-foreground: 0 0% 100%;
+    /* Deep Navy Blue - matching the original site */
+    --navy: 235 75% 15%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 0 0% 20%;
 
-    --muted: 240 10% 95%;
-    --muted-foreground: 235 20% 45%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 0 0% 45%;
 
     /* Gold Accent */
     --accent: 45 90% 50%;
-    --accent-foreground: 235 45% 15%;
+    --accent-foreground: 0 0% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 90%;
-    --input: 240 10% 90%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
     --ring: 43 96% 56%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Luxury Gradients */
+    /* Gradients */
     --gradient-gold: linear-gradient(135deg, hsl(43, 96%, 56%) 0%, hsl(45, 100%, 65%) 100%);
-    --gradient-royal: linear-gradient(135deg, hsl(235, 60%, 25%) 0%, hsl(240, 70%, 35%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(235, 60%, 25%) 0%, hsl(240, 65%, 30%) 50%, hsl(235, 60%, 25%) 100%);
-
-    /* Luxury Shadows */
-    --shadow-gold: 0 10px 40px -10px hsl(43 96% 56% / 0.4);
-    --shadow-card: 0 4px 20px -2px hsl(235 45% 15% / 0.08);
-    --shadow-elegant: 0 20px 60px -15px hsl(235 45% 15% / 0.15);
-
-    /* Animations */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Shadows */
+    --shadow-gold: 0 10px 40px -10px hsl(43 96% 56% / 0.3);
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   .dark {
