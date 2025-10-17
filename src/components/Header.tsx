@@ -6,18 +6,12 @@ export const Header = () => {
   return <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
-          {/* Right side - Cart and User */}
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary">
-              <Search className="h-5 w-5" />
+          {/* Right side - Menu and Language */}
+          <div className="flex items-center gap-3">
+            
+            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary md:hidden">
+              <Menu className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative text-gray-600 hover:text-primary">
-              <ShoppingCart className="h-5 w-5" />
-              {cartItemCount > 0 && <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
-                  {cartItemCount}
-                </Badge>}
-            </Button>
-            <div className="text-sm font-medium text-gray-700">0 ر.س</div>
           </div>
 
           {/* Center - Logo */}
@@ -46,12 +40,18 @@ export const Header = () => {
             </div>
           </div>
 
-          {/* Left side - Menu and Language */}
-          <div className="flex items-center gap-3">
-            
-            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary md:hidden">
-              <Menu className="h-5 w-5" />
+          {/* Left side - Cart and User */}
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary">
+              <Search className="h-5 w-5" />
             </Button>
+            <Button variant="ghost" size="icon" className="relative text-gray-600 hover:text-primary">
+              <ShoppingCart className="h-5 w-5" />
+              {cartItemCount > 0 && <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
+                  {cartItemCount}
+                </Badge>}
+            </Button>
+            <div className="text-sm font-medium text-gray-700">0 ر.س</div>
           </div>
         </div>
 
