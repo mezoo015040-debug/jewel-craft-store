@@ -2,7 +2,6 @@ import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import logo from "@/assets/logo.png";
-
 interface ProductCardProps {
   name: string;
   category: string;
@@ -10,10 +9,14 @@ interface ProductCardProps {
   rating: number;
   image: string;
 }
-
-export const ProductCard = ({ name, category, price, rating, image }: ProductCardProps) => {
-  return (
-    <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
+export const ProductCard = ({
+  name,
+  category,
+  price,
+  rating,
+  image
+}: ProductCardProps) => {
+  return <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
       {/* Image Section with Black Background */}
       <div className="relative bg-black rounded-t-[2rem] p-6">
         {/* Red Badge */}
@@ -23,16 +26,12 @@ export const ProductCard = ({ name, category, price, rating, image }: ProductCar
         
         {/* Logo */}
         <div className="absolute top-3 right-3 w-12 h-12 z-10">
-          <img src={logo} alt="Logo" className="w-full h-full object-contain" />
+          
         </div>
 
         {/* Product Image - Full size without inner container */}
         <div className="aspect-square mt-8">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-contain"
-          />
+          <img src={image} alt={name} className="w-full h-full object-contain" />
         </div>
 
         {/* Product Title on Dark Background */}
@@ -56,16 +55,9 @@ export const ProductCard = ({ name, category, price, rating, image }: ProductCar
 
         {/* Rating */}
         <div className="flex items-center justify-center gap-1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              key={i}
-              className={`h-4 w-4 ${
-                i < Math.floor(rating)
-                  ? "fill-yellow-400 text-yellow-400"
-                  : "text-gray-300"
-              }`}
-            />
-          ))}
+          {Array.from({
+          length: 5
+        }).map((_, i) => <Star key={i} className={`h-4 w-4 ${i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`} />)}
           <span className="text-sm text-gray-600 mr-1">{rating}</span>
         </div>
 
@@ -74,14 +66,11 @@ export const ProductCard = ({ name, category, price, rating, image }: ProductCar
           <button className="p-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
             <Heart className="h-5 w-5 text-gray-400" />
           </button>
-          <Button 
-            className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg h-11 flex items-center justify-center gap-2"
-          >
+          <Button className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg h-11 flex items-center justify-center gap-2">
             <ShoppingCart className="h-4 w-4" />
             إضافة للسلة
           </Button>
         </div>
       </div>
-    </Card>
-  );
+    </Card>;
 };
