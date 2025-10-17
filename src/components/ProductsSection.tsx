@@ -29,7 +29,7 @@ const products = [
     id: 7,
     name: "سبيكة ذهب 10 جرام عيار 24",
     category: "سبائك ذهب",
-    price: 5175,
+    price: 4000,
     rating: 4.6,
     image: goldBar,
   },
