@@ -25,11 +25,11 @@ export default function Cart() {
                 الرئيسية
               </a>
               <span>‹</span>
-              <span className="text-foreground">سلة المشتريات</span>
+              <span className="text-foreground">ملخص الطلب</span>
             </div>
 
             <h1 className="text-3xl font-bold text-center mb-8" dir="rtl">
-              السلة
+              ملخص الطلب
             </h1>
 
             {items.length === 0 ? (
