@@ -2,6 +2,7 @@ import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 interface ProductCardProps {
@@ -21,8 +22,10 @@ export const ProductCard = ({
   image
 }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
     addToCart({
       id,
       name,
@@ -31,8 +34,15 @@ export const ProductCard = ({
       image,
     });
   };
+
+  const handleCardClick = () => {
+    navigate(`/product/${id}`);
+  };
   
-  return <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
+  return <Card 
+    className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative cursor-pointer"
+    onClick={handleCardClick}
+  >
       {/* Image Section with Black Background */}
       <div className="relative bg-black rounded-t-[2rem] p-6">
         {/* Red Badge */}
