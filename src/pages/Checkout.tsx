@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import tamaraLogo from "@/assets/tamara-logo.png";
+import tabbyLogo from "@/assets/tabby-logo.png";
 
 export default function Checkout() {
   const { items, totalPrice } = useCart();
@@ -256,10 +257,11 @@ export default function Checkout() {
                                   )}
                                 </div>
                                 <div className="flex items-center gap-3">
-                                  {/* Placeholder for Tabby logo - will be replaced */}
-                                  <div className="w-24 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                                    تابي
-                                  </div>
+                                  <img 
+                                    src={tabbyLogo} 
+                                    alt="Tabby" 
+                                    className="w-24 h-10 object-contain"
+                                  />
                                   <div className="text-right">
                                     <p className="font-semibold text-sm">قسّط على 6 أشهر</p>
                                     <p className="text-xs text-muted-foreground">بدون فوائد أو رسوم إضافية</p>
