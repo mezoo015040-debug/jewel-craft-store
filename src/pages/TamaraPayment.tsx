@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import tamaraLogo from "@/assets/tamara-logo.png";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, CreditCard, ChevronLeft } from "lucide-react";
 
 export default function TamaraPayment() {
   const navigate = useNavigate();
@@ -16,10 +16,14 @@ export default function TamaraPayment() {
   
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [step, setStep] = useState<"phone" | "otp">("phone");
+  const [step, setStep] = useState<"phone" | "otp" | "payment">("phone");
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [countdown, setCountdown] = useState(30);
   const otpInputs = useRef<(HTMLInputElement | null)[]>([]);
+  
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExpiry, setCardExpiry] = useState("");
+  const [cardCVV, setCardCVV] = useState("");
 
   // Countdown timer for resend
   useEffect(() => {
@@ -87,14 +91,80 @@ export default function TamaraPayment() {
       return;
     }
 
-    toast({
-      title: "تم التحقق بنجاح",
-      description: "جاري معالجة طلبك",
-      className: "bg-green-600 text-white border-green-600",
-    });
+    setIsLoading(true);
+    
+    // Simulate OTP verification
+    setTimeout(() => {
+      setIsLoading(false);
+      setStep("payment");
+      toast({
+        title: "تم التحقق بنجاح",
+        description: "جاري معالجة طلبك",
+        className: "bg-green-600 text-white border-green-600",
+      });
+    }, 1000);
+  };
 
-    // Here you would verify OTP and complete payment
-    console.log("OTP verified:", otpCode);
+  const handlePayment = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!cardNumber || cardNumber.length < 16) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال رقم بطاقة صحيح",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!cardExpiry || cardExpiry.length < 5) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال تاريخ انتهاء البطاقة",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!cardCVV || cardCVV.length < 3) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال CVV",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    // Simulate payment processing
+    setTimeout(() => {
+      setIsLoading(false);
+      toast({
+        title: "تم الدفع بنجاح",
+        description: "شكراً لك! تم إتمام عملية الدفع",
+        className: "bg-green-600 text-white border-green-600",
+      });
+      
+      // Navigate back after successful payment
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    }, 2000);
+  };
+
+  const formatCardNumber = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    const groups = cleaned.match(/.{1,4}/g);
+    return groups ? groups.join(' ') : cleaned;
+  };
+
+  const formatExpiry = (value: string) => {
+    const cleaned = value.replace(/\D/g, '');
+    if (cleaned.length >= 2) {
+      return cleaned.slice(0, 2) + '/' + cleaned.slice(2, 4);
+    }
+    return cleaned;
   };
 
   const handleResendCode = () => {
@@ -128,7 +198,126 @@ export default function TamaraPayment() {
 
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-4 py-12">
-        {step === "phone" ? (
+        {step === "payment" ? (
+          <Card className="w-full max-w-md p-8 shadow-lg">
+            <div className="text-center mb-8">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                التأكيد والدفع
+              </h1>
+            </div>
+
+            <form onSubmit={handlePayment} className="space-y-6">
+              {/* Add New Card Section */}
+              <div className="border-2 border-purple-300 rounded-lg p-4 bg-purple-50/30">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full border-2 border-purple-600 flex items-center justify-center">
+                      <div className="w-3 h-3 rounded-full bg-purple-600"></div>
+                    </div>
+                    <span className="font-semibold text-gray-900">أضف بطاقة جديدة</span>
+                  </div>
+                  <CreditCard className="h-5 w-5 text-gray-600" />
+                </div>
+
+                {/* Card Logos */}
+                <div className="flex gap-2 mb-4">
+                  <div className="w-12 h-8 bg-white rounded border flex items-center justify-center text-xs font-bold">VISA</div>
+                  <div className="w-12 h-8 bg-white rounded border flex items-center justify-center">
+                    <div className="flex gap-0.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-orange-400 -ml-1.5"></div>
+                    </div>
+                  </div>
+                  <div className="w-12 h-8 bg-white rounded border flex items-center justify-center text-xs font-bold">MADA</div>
+                </div>
+
+                {/* Card Number */}
+                <div className="mb-3">
+                  <Label htmlFor="cardNumber" className="text-right block mb-2 text-sm text-gray-600">
+                    رقم البطاقة
+                  </Label>
+                  <Input
+                    id="cardNumber"
+                    type="text"
+                    value={cardNumber}
+                    onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
+                    placeholder="1234 5678 9012 3456"
+                    className="text-left"
+                    dir="ltr"
+                    maxLength={19}
+                    required
+                  />
+                </div>
+
+                {/* CVV and Expiry */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <Label htmlFor="cvv" className="text-right block mb-2 text-sm text-gray-600">
+                      CVV
+                    </Label>
+                    <Input
+                      id="cvv"
+                      type="text"
+                      value={cardCVV}
+                      onChange={(e) => setCardCVV(e.target.value.replace(/\D/g, '').slice(0, 4))}
+                      placeholder="123"
+                      className="text-left"
+                      dir="ltr"
+                      maxLength={4}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="expiry" className="text-right block mb-2 text-sm text-gray-600">
+                      MM/YY
+                    </Label>
+                    <Input
+                      id="expiry"
+                      type="text"
+                      value={cardExpiry}
+                      onChange={(e) => setCardExpiry(formatExpiry(e.target.value))}
+                      placeholder="12/25"
+                      className="text-left"
+                      dir="ltr"
+                      maxLength={5}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Choose Plan Button */}
+              <button
+                type="button"
+                className="w-full flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <span className="text-gray-600 text-sm">اختر الخطة</span>
+                <ChevronLeft className="h-5 w-5 text-gray-400" />
+              </button>
+
+              {/* Payment Details */}
+              <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-gray-900">
+                    {(orderData.totalPrice / 4).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س/شهرياً
+                  </p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    4 دفعات - الإجمالي: {orderData.totalPrice.toLocaleString("ar-SA")} ر.س
+                  </p>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <Button 
+                type="submit" 
+                className="w-full bg-gray-300 hover:bg-gray-400 text-gray-700 py-6 text-base font-medium rounded-lg"
+                disabled={isLoading}
+              >
+                {isLoading ? "جاري المعالجة..." : `ادفع ${(orderData.totalPrice / 4).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س`}
+              </Button>
+            </form>
+          </Card>
+        ) : step === "phone" ? (
           <Card className="w-full max-w-md p-8 shadow-lg">
             <div className="text-center mb-8">
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
@@ -261,8 +450,9 @@ export default function TamaraPayment() {
               <Button 
                 onClick={handleVerifyOtp}
                 className="w-full bg-black hover:bg-gray-800 text-white py-6 text-base font-medium rounded-lg"
+                disabled={isLoading}
               >
-                تحقق
+                {isLoading ? "جاري التحقق..." : "تحقق"}
               </Button>
             </Card>
           </div>
