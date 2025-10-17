@@ -14,10 +14,8 @@ export const Header = () => {
         <div className="flex h-20 items-center justify-between">
           {/* Right side - Menu */}
           <div className="flex items-center gap-3">
-            <SidebarTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary">
-                <Menu className="h-5 w-5" />
-              </Button>
+            <SidebarTrigger className="text-gray-600 hover:text-primary">
+              <Menu className="h-5 w-5" />
             </SidebarTrigger>
           </div>
 
