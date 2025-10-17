@@ -1,6 +1,7 @@
-import { Star, ShoppingCart } from "lucide-react";
+import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import logo from "@/assets/logo.png";
 
 interface ProductCardProps {
   name: string;
@@ -12,34 +13,49 @@ interface ProductCardProps {
 
 export const ProductCard = ({ name, category, price, rating, image }: ProductCardProps) => {
   return (
-    <Card className="overflow-hidden border border-gray-200 bg-white hover:shadow-lg transition-shadow duration-300 rounded-xl">
-      <div className="relative">
-        <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 p-8">
+    <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
+      {/* Image Section with Dark Background */}
+      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-t-[2rem] p-4">
+        {/* Red Badge */}
+        <div className="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-md text-xs font-bold z-10">
+          فخامة لا تُقاوم
+        </div>
+        
+        {/* Logo */}
+        <div className="absolute top-3 right-3 w-12 h-12 z-10">
+          <img src={logo} alt="Logo" className="w-full h-full object-contain" />
+        </div>
+
+        {/* Product Image in Rounded Container */}
+        <div className="aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-gray-700 to-gray-800 p-6 mt-8">
           <img
             src={image}
             alt={name}
             className="w-full h-full object-contain"
           />
         </div>
-        <div className="absolute top-3 right-3 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">
-          فخامة لا تُقاوم
-        </div>
+
+        {/* Product Title on Dark Background */}
+        <h3 className="text-white font-bold text-xl text-center mt-4">
+          سبيكة ذهب
+        </h3>
       </div>
 
-      <div className="p-4 space-y-3">
-        <h3 className="font-bold text-base text-gray-900 hover:text-primary transition-colors cursor-pointer">
-          {name}
-        </h3>
+      {/* Info Section */}
+      <div className="p-4 space-y-2">
+        <p className="text-sm text-gray-700 text-center font-medium">{name}</p>
+        <p className="text-xs text-gray-500 text-center">{category}</p>
 
-        <p className="text-sm text-gray-600">{category}</p>
-
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-primary">
-            {price.toLocaleString("ar-SA")} <span className="text-lg">ر.س</span>
-          </div>
+        {/* Price */}
+        <div className="text-center">
+          <span className="text-primary text-2xl font-bold">
+            {price.toLocaleString("ar-SA")}
+          </span>
+          <span className="text-primary text-base font-bold mr-1">ر.س</span>
         </div>
 
-        <div className="flex items-center gap-1">
+        {/* Rating */}
+        <div className="flex items-center justify-center gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
@@ -50,14 +66,21 @@ export const ProductCard = ({ name, category, price, rating, image }: ProductCar
               }`}
             />
           ))}
-          <span className="text-sm text-gray-600 mr-2">{rating}</span>
+          <span className="text-sm text-gray-600 mr-1">{rating}</span>
         </div>
 
-        <Button 
-          className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-lg h-11"
-        >
-          إضافة للسلة
-        </Button>
+        {/* Actions */}
+        <div className="flex items-center gap-2 pt-2">
+          <button className="p-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <Heart className="h-5 w-5 text-gray-400" />
+          </button>
+          <Button 
+            className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg h-11 flex items-center justify-center gap-2"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            إضافة للسلة
+          </Button>
+        </div>
       </div>
     </Card>
   );
