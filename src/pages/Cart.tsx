@@ -14,13 +14,12 @@ export default function Cart() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
-        <AppSidebar />
-        <div className="flex-1 flex flex-col">
-          <Header />
-          <main className="flex-1 container mx-auto px-4 py-8">
-            {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6" dir="rtl">
+      <AppSidebar />
+      <div className="min-h-screen flex flex-col w-full bg-background">
+        <Header />
+        <main className="flex-1 container mx-auto px-4 py-8">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6" dir="rtl">
               <a href="/" className="hover:text-primary transition-colors">
                 الرئيسية
               </a>
@@ -164,10 +163,9 @@ export default function Cart() {
                   </Card>
                 </div>
               </div>
-            )}
-          </main>
-          <Footer />
-        </div>
+          )}
+        </main>
+        <Footer />
       </div>
     </SidebarProvider>
   );
