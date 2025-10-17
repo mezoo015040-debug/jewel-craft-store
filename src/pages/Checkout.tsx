@@ -1,5 +1,3 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/AppSidebar";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -77,12 +75,10 @@ export default function Checkout() {
   };
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <div className="min-h-screen flex flex-col w-full bg-background">
-        <Header />
-        <main className="flex-1 container mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold text-center mb-8" dir="rtl">
+    <div className="min-h-screen flex flex-col w-full bg-background">
+      <Header />
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold text-center mb-8" dir="rtl">
             إتمام الطلب
           </h1>
 
@@ -325,6 +321,5 @@ export default function Checkout() {
         </main>
         <Footer />
       </div>
-    </SidebarProvider>
   );
 }
