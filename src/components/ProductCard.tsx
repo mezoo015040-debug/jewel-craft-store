@@ -14,8 +14,8 @@ interface ProductCardProps {
 export const ProductCard = ({ name, category, price, rating, image }: ProductCardProps) => {
   return (
     <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
-      {/* Image Section with Dark Background */}
-      <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-t-[2rem] p-6">
+      {/* Image Section with Black Background */}
+      <div className="relative bg-black rounded-t-[2rem] p-6">
         {/* Red Badge */}
         <div className="absolute top-3 left-3 bg-red-600 text-white px-3 py-1 rounded-md text-xs font-bold z-10">
           فخامة لا تُقاوم
