@@ -14,6 +14,8 @@ import { useToast } from "@/hooks/use-toast";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import tamaraLogo from "@/assets/tamara-logo.png";
 import tabbyLogo from "@/assets/tabby-logo.png";
+import { addMonths, format } from "date-fns";
+import { ar } from "date-fns/locale";
 
 export default function Checkout() {
   const { items, totalPrice } = useCart();
@@ -75,8 +77,11 @@ export default function Checkout() {
     });
 
     // Here you would typically process the payment
-    console.log('Order data:', { formData, paymentMethod, items, totalPrice });
+    const orderDate = new Date();
+    console.log('Order data:', { formData, paymentMethod, items, totalPrice, orderDate });
   };
+
+  const orderDate = new Date();
 
   return (
     <SidebarProvider>
@@ -210,14 +215,22 @@ export default function Checkout() {
                           <div className="p-4 bg-muted/30 border-t">
                             <h4 className="font-semibold mb-3 text-sm">خطة التقسيط - 6 أشهر</h4>
                             <div className="space-y-2">
-                              {[1, 2, 3, 4, 5, 6].map((month) => (
-                                <div key={month} className="flex justify-between items-center py-2 px-3 bg-background rounded-lg">
-                                  <span className="text-sm text-muted-foreground">القسط {month}</span>
-                                  <span className="font-semibold text-primary">
-                                    {(totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
-                                  </span>
-                                </div>
-                              ))}
+                              {[1, 2, 3, 4, 5, 6].map((month) => {
+                                const paymentDate = addMonths(orderDate, month - 1);
+                                return (
+                                  <div key={month} className="flex justify-between items-center py-2 px-3 bg-background rounded-lg">
+                                    <div className="flex flex-col">
+                                      <span className="text-sm text-muted-foreground">القسط {month}</span>
+                                      <span className="text-xs text-muted-foreground">
+                                        {format(paymentDate, "d MMMM yyyy", { locale: ar })}
+                                      </span>
+                                    </div>
+                                    <span className="font-semibold text-foreground">
+                                      {(totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
+                                    </span>
+                                  </div>
+                                );
+                              })}
                             </div>
                             <p className="text-xs text-muted-foreground mt-3 text-center">
                               الدفعة الأولى عند الشراء، والباقي يُقسّم على 5 أشهر
@@ -281,14 +294,22 @@ export default function Checkout() {
                           <div className="p-4 bg-muted/30 border-t">
                             <h4 className="font-semibold mb-3 text-sm">خطة التقسيط - 6 أشهر</h4>
                             <div className="space-y-2">
-                              {[1, 2, 3, 4, 5, 6].map((month) => (
-                                <div key={month} className="flex justify-between items-center py-2 px-3 bg-background rounded-lg">
-                                  <span className="text-sm text-muted-foreground">القسط {month}</span>
-                                  <span className="font-semibold text-primary">
-                                    {(totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
-                                  </span>
-                                </div>
-                              ))}
+                              {[1, 2, 3, 4, 5, 6].map((month) => {
+                                const paymentDate = addMonths(orderDate, month - 1);
+                                return (
+                                  <div key={month} className="flex justify-between items-center py-2 px-3 bg-background rounded-lg">
+                                    <div className="flex flex-col">
+                                      <span className="text-sm text-muted-foreground">القسط {month}</span>
+                                      <span className="text-xs text-muted-foreground">
+                                        {format(paymentDate, "d MMMM yyyy", { locale: ar })}
+                                      </span>
+                                    </div>
+                                    <span className="font-semibold text-foreground">
+                                      {(totalPrice / 6).toLocaleString("ar-SA", { maximumFractionDigits: 2 })} ر.س
+                                    </span>
+                                  </div>
+                                );
+                              })}
                             </div>
                             <p className="text-xs text-muted-foreground mt-3 text-center">
                               الدفعة الأولى عند الشراء، والباقي يُقسّم على 5 أشهر
