@@ -21,7 +21,7 @@ const products = [
     id: 2,
     name: "سبيكة ذهب 31.1 جرام عيار 24",
     category: "سبائك ذهب",
-    price: 3105,
+    price: 8000,
     rating: 4.8,
     image: goldBar,
   },
