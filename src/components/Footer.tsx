@@ -1,4 +1,6 @@
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import vatCertificate from "@/assets/vat-certificate.png";
+import businessCenter from "@/assets/business-center.png";
 
 export const Footer = () => {
   return (
@@ -77,28 +79,20 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Social media */}
+          {/* Certifications */}
           <div className="space-y-4">
-            <h4 className="font-bold text-gray-900">تابعنا</h4>
-            <div className="flex gap-3">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-200 hover:bg-primary hover:text-white flex items-center justify-center transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-200 hover:bg-primary hover:text-white flex items-center justify-center transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-200 hover:bg-primary hover:text-white flex items-center justify-center transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
+            <h4 className="font-bold text-gray-900">الشهادات والتوثيق</h4>
+            <div className="flex gap-4 items-center">
+              <img 
+                src={vatCertificate} 
+                alt="الرقم الضريبي" 
+                className="h-20 w-auto object-contain"
+              />
+              <img 
+                src={businessCenter} 
+                alt="توثيق مركز الأعمال" 
+                className="h-16 w-auto object-contain"
+              />
             </div>
           </div>
         </div>
