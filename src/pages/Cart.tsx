@@ -149,7 +149,11 @@ export default function Cart() {
                       </div>
                     </div>
 
-                    <Button className="w-full" size="lg">
+                    <Button 
+                      className="w-full" 
+                      size="lg"
+                      onClick={() => navigate('/checkout')}
+                    >
                       إتمام الطلب
                     </Button>
 
