@@ -1,6 +1,7 @@
-import { ShoppingCart, Menu, Search, User } from "lucide-react";
+import { ShoppingCart, Menu, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useCart } from "@/contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 
@@ -11,12 +12,13 @@ export const Header = () => {
   return <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
-          {/* Right side - Menu and Language */}
+          {/* Right side - Menu */}
           <div className="flex items-center gap-3">
-            
-            <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
+            <SidebarTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SidebarTrigger>
           </div>
 
           {/* Center - Logo */}
