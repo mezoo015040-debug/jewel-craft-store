@@ -34,6 +34,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         toast({
           title: "تم التحديث",
           description: `تم زيادة كمية ${product.name}`,
+          variant: "destructive",
+          className: "bg-red-600 text-white border-red-600",
         });
         return prevItems.map((item) =>
           item.id === product.id
@@ -45,6 +47,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       toast({
         title: "تمت الإضافة للسلة",
         description: `تم إضافة ${product.name} إلى السلة`,
+        variant: "destructive",
+        className: "bg-red-600 text-white border-red-600",
       });
       
       return [...prevItems, { ...product, quantity: 1 }];
