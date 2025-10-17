@@ -1,8 +1,13 @@
 import { ShoppingCart, Menu, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
+
 export const Header = () => {
-  const cartItemCount = 0;
+  const { totalItems, totalPrice } = useCart();
+  const navigate = useNavigate();
+  
   return <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
@@ -45,13 +50,20 @@ export const Header = () => {
             <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative text-gray-600 hover:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative text-gray-600 hover:text-primary"
+              onClick={() => navigate('/cart')}
+            >
               <ShoppingCart className="h-5 w-5" />
-              {cartItemCount > 0 && <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
-                  {cartItemCount}
+              {totalItems > 0 && <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center">
+                  {totalItems}
                 </Badge>}
             </Button>
-            <div className="text-sm font-medium text-gray-700">0 ر.س</div>
+            <div className="text-sm font-medium text-gray-700">
+              {totalPrice.toLocaleString("ar-SA")} ر.س
+            </div>
           </div>
         </div>
 

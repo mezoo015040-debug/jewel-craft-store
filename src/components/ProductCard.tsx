@@ -1,8 +1,11 @@
 import { Star, ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useCart } from "@/contexts/CartContext";
 import logo from "@/assets/logo.png";
+
 interface ProductCardProps {
+  id: number;
   name: string;
   category: string;
   price: number;
@@ -10,12 +13,25 @@ interface ProductCardProps {
   image: string;
 }
 export const ProductCard = ({
+  id,
   name,
   category,
   price,
   rating,
   image
 }: ProductCardProps) => {
+  const { addToCart } = useCart();
+  
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      name,
+      category,
+      price,
+      image,
+    });
+  };
+  
   return <Card className="overflow-hidden border-2 border-primary bg-white hover:shadow-xl transition-all duration-300 rounded-[2rem] relative">
       {/* Image Section with Black Background */}
       <div className="relative bg-black rounded-t-[2rem] p-6">
@@ -66,7 +82,10 @@ export const ProductCard = ({
           <button className="p-2 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
             <Heart className="h-5 w-5 text-gray-400" />
           </button>
-          <Button className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg h-11 flex items-center justify-center gap-2">
+          <Button 
+            onClick={handleAddToCart}
+            className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg h-11 flex items-center justify-center gap-2"
+          >
             <ShoppingCart className="h-4 w-4" />
             إضافة للسلة
           </Button>
