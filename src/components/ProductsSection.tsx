@@ -57,6 +57,30 @@ const products = [
     rating: 4.9,
     image: goldBar,
   },
+  {
+    id: 7,
+    name: "سبيكة ذهب 10 جرام عيار 24",
+    category: "سبائك ذهب",
+    price: 5175,
+    rating: 4.6,
+    image: goldBar,
+  },
+  {
+    id: 8,
+    name: "سبيكة ذهب 250 جرام عيار 24",
+    category: "سبائك ذهب",
+    price: 64125,
+    rating: 4.9,
+    image: goldBar,
+  },
+  {
+    id: 9,
+    name: "سبيكة ذهب 5 جرام عيار 24",
+    category: "سبائك ذهب",
+    price: 2587,
+    rating: 4.5,
+    image: goldBar,
+  },
 ];
 
 export const ProductsSection = () => {
