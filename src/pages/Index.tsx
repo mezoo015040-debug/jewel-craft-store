@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductsSection } from "@/components/ProductsSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -10,6 +11,7 @@ const Index = () => {
       <main className="flex-1">
         <HeroSection />
         <ProductsSection />
+        <TestimonialsSection />
       </main>
       <Footer />
     </div>
